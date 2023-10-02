@@ -10,3 +10,7 @@ tab_width = 4
 
 [*.{kt,kts}]
 disabled_rules=import-ordering
+
+[*.yml]
+tab_width = 2
+indent_size = 2

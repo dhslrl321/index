@@ -12,7 +12,7 @@ class Subscription(
     var status: SubscriptionStatus = CREATED,
 
     var reservedBill: ReservedBill, // 예약된 청구
-    val confirmedBills: MutableList<ConfirmedBill>, // 완료된 청구
+    val confirmedBills: MutableList<ConfirmedBill> = mutableListOf(), // 완료된 청구
 ) {
 
     fun needCompleteFirstBill(): Boolean {
