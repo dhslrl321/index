@@ -2,24 +2,23 @@ package com.github.dhslrl321.alpha.subscriptions
 
 import com.github.dhslrl321.alpha.subscription.dependency.UserId
 import com.github.dhslrl321.alpha.subscription.domain.*
+import com.github.dhslrl321.alpha.subscriptions.entity.SubscriptionEntity
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
 
 @Repository
 class SubscriptionRepositoryProxy(
-    private val repository: SubscriptionRepositoryDataJpaImpl
+    private val repository: SubscriptionRepositoryMutableMapImpl
 ) : SubscriptionRepository {
 
     override fun findBy(id: SubscriptionId): Subscription? {
-        val entity = repository.findById(id.value)
-            .orElse(null) ?: return null
-
-        val reservedBill = ReservedBill(Bill(1, Amount(1)), LocalDateTime.now())
-        return Subscription(id, UserId("va"), status = SubscriptionStatus.CREATED, reservedBill = reservedBill, )
+        return repository.findBy(id)
     }
 
+    @Transactional
     override fun save(domain: Subscription) {
-        TODO("Not yet implemented")
+        repository.save(domain)
     }
 
 }

@@ -1,11 +1,10 @@
 # subscription
 
-this is subscription system that occurs regular billing and represents service privileges
+구독 상품
 
 ## roles
 
-- Users can subscribe our system
-  - Subscription period will different by the products
-- Subscription could be revoked or unsubscribed
-- If someone who have never been experienced our system, will use for free
-  - It's called the First Time Promotion
+- 유저는 특정 상품을 구독할 수 있습니다
+- 구독/취소/취소철회 할 수 있습니다
+- 구독은 해지될 수 있습니다
+- 유저는 구독 주기를 설정할 수 있습니다

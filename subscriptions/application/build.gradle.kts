@@ -22,6 +22,7 @@ repositories {
 dependencies {
     implementation("org.springframework:spring-context")
     implementation(project(":subscriptions:domain"))
+    implementation(project(":subscriptions:persistence"))
 }
 
 tasks.withType<KotlinCompile> {

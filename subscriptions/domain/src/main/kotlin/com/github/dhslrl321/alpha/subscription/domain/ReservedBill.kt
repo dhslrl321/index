@@ -18,6 +18,6 @@ class ReservedBill(
     }
 
     fun confirm(receipt: Receipt): ConfirmedBill {
-        return ConfirmedBill(this.bill, receipt, LocalDateTime.now())
+        return ConfirmedBill(this.bill, receipt)
     }
 }

@@ -1,7 +1,6 @@
 package com.github.dhslrl321.alpha.subscription.domain
 
 import io.kotest.core.spec.style.StringSpec
-import java.time.Instant
 import java.time.LocalDateTime
 
 class ReservedBillTest: StringSpec({

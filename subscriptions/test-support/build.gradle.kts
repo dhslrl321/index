@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 
-    testImplementation(project(":subscriptions:test-support"))
+    implementation(project(":subscriptions:domain"))
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 

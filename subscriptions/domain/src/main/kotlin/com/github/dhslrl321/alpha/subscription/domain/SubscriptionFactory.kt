@@ -1,18 +1,23 @@
 package com.github.dhslrl321.alpha.subscription.domain
 
 import com.github.dhslrl321.alpha.subscription.command.CreateSubscriptionCommand
-import java.time.LocalDateTime
+import com.github.dhslrl321.alpha.subscription.service.BillingCycleCalculator
 
-class SubscriptionFactory {
-  fun create(command: CreateSubscriptionCommand): Subscription {
+class SubscriptionFactory(
+    private val billingCycleCalculator: BillingCycleCalculator
+) {
+    fun create(command: CreateSubscriptionCommand): Subscription {
 
-    val immediateReservedAt = LocalDateTime.of(1970, 1, 1, 1, 1, 1)
+        val receipt = command.firstBillReceipt
 
-    return Subscription(
-      id = command.subscriptionId,
-      userId = command.userId,
-      reservedBill = ReservedBill(Bill(1, Amount(9900)), immediateReservedAt),
-      confirmedBills = mutableListOf(),
-    )
-  }
+        val firstConfirmedBill = ConfirmedBill(Bill(1, receipt.paidAmount), receipt)
+
+        return Subscription(
+            id = command.subscriptionId,
+            userId = command.userId,
+            billingCycle = command.billingCycle,
+            reservedBill = ReservedBill(Bill(2, command.billingAmount), billingCycleCalculator.calc(command.billingCycle)),
+            confirmedBills = mutableListOf(firstConfirmedBill),
+        )
+    }
 }
