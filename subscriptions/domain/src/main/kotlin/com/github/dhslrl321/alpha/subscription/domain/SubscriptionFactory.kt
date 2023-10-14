@@ -6,6 +6,7 @@ import com.github.dhslrl321.alpha.subscription.service.BillingCycleCalculator
 class SubscriptionFactory(
     private val billingCycleCalculator: BillingCycleCalculator
 ) {
+
     fun create(command: CreateSubscriptionCommand): Subscription {
 
         val receipt = command.firstBillReceipt
@@ -16,7 +17,10 @@ class SubscriptionFactory(
             id = command.subscriptionId,
             userId = command.userId,
             billingCycle = command.billingCycle,
-            reservedBill = ReservedBill(Bill(2, command.billingAmount), billingCycleCalculator.calc(command.billingCycle)),
+            reservedBill = ReservedBill(
+                bill = Bill(2, command.billingAmount),
+                reservedAt = billingCycleCalculator.calc(command.billingCycle)
+            ),
             confirmedBills = mutableListOf(firstConfirmedBill),
         )
     }
