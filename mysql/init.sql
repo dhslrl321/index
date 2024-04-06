@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS todo_list;
+
+
+CREATE TABLE IF NOT EXISTS tasks (
+                                     id INT AUTO_INCREMENT PRIMARY KEY,
+                                     title VARCHAR(255) NOT NULL,
+    description TEXT,
+    status ENUM('PENDING', 'IN_PROGRESS', 'COMPLETED') NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
